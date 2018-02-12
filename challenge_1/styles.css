@@ -1,0 +1,26 @@
+body {
+	
+
+}
+
+#board {
+	margin: auto;
+
+}
+
+.row {
+	height: 200px;
+	width: 900px;
+	/*border: 1px solid #000;*/
+}
+
+.square {
+	height: 199px;
+	width: 280;
+	float: left;
+	border: 1px solid #000;
+}
+
+.x {
+	font-size: 100px;
+}
