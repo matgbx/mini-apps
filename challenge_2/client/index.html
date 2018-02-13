@@ -1,2 +1,57 @@
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <style type="text/css">
+      .title {
+        font-family: courier;
+      }
 
+      .inputField {
+        width: 590px;
+        height: 165px;
+      }
+
+      .submitBtn {
+        font-family: courier;
+        width: 60px;
+        text-align: center;
+        background: white;
+        padding: 5px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      .submitBtn:hover {
+        cursor: pointer;
+        background: #babdc1;
+      }
+
+      .submitBtn:active {
+        background: #eee;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <header>
+      <h1 class="title">CSV Maker</h1>
+    </header>
+
+    <div class="formBox">
+      <form>
+        <textarea class="inputField"></textarea>
+      </form>
+    </div>
+    <div class="submitBtn">submit</div>
+
+
+  </body>
+  <script src="server.js"></script>
+  <script src="app.js"></script>
+
+</html>

@@ -1,0 +1,53 @@
+Task List & notes
+
+Notes/requirements:
+
+  - use Express to build single-page client
+    - do not use any external libraries
+
+  - app will generate CSV from JSON data
+    - client app will submit JSON data to server
+    - server will return a csv formatted response
+    - then display the response on the same page
+
+  - create Package.JSON to store dependencies
+
+  - HTML form (single textarea) and a submit button should be used for basic requirements when submitting data-entry through the client
+    - submit will send a POST request to the server
+    - make sure this submission does not refresh the page
+
+  - The page should not reload when data is submitted
+
+  - the JSON data will have a regular structure and heirarchy
+    - server must flatten JSON heirarchy - maps each item in JSON to a single line of CSV.
+    - child records will always be in a property called children
+
+Task List:
+  
+  - review sample data file of JSON 
+  - review sample data file of CSV
+
+  client:
+
+  - single HTML form and submit button to send a POST request to the server - JSON data
+  - receives a CSV file back 
+  - display the CSV file received from server
+
+  server:
+
+  - use express
+    - can we use parse-body?
+
+  - build controllers - GET & POST
+  - build models - GET & POST
+
+
+  Database:
+  
+  - takes in JSON data
+  - returns CSV data
+  
+
+
+
+
