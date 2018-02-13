@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	let count = 0;
 	let token = 'X';
 	let board = [[0,0,0],[0,0,0],[0,0,0]];
+	const title = document.getElementById('title');
 
 	const indexKeys = {
 		'zero': 0,
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   //***************************// 
 
   // displayToken
-  
+
 	// displays X or O, and adds value to the board array //
 
 
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const displayToken = (node) => {
 		// check if the square is empty e.g. no child nodes appended
+		
 		if (node.path[0].childNodes.length === 0) {
 			// check if count if is even, reassign the token to either 'X' or 'O' accordingly
 			if (count % 2 === 0) {
@@ -103,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	  	child.innerHTML = '';
 	  	count = 0;
 	  	board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+	  	title.innerHTML = 'Tic-Tac-Toe';
 	  	// console.log(child);
 	  });
   }
@@ -124,9 +127,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	  			val += board[i][j];
 	  		}
 	  		if (val === 3) {
-	  			return 'Player X wins!'
+	  			title.innerHTML = 'Player X wins!';
+	  			return;
 	  		} else if (val === -3) {
-	  			return 'Player O wins!'
+	  			title.innerHTML = 'Player O wins!';
+	  			return;
 	  		} 
 	  	}
 	  },
@@ -135,9 +140,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	  	for (let i = 0; i < 3; i++) {
 	  		let colVals = board[0][i] + board[1][i] + board[2][i];
 	  		if (colVals === 3) {
-	  			return 'Player X wins!'
+	  			title.innerHTML = 'Player X wins!';
+	  			return;
 	  		} else if (colVals === -3) {
-	  			return 'Player O wins!'
+	  			title.innerHTML = 'Player O wins!';
+	  			return;
 	  		}
 	  	}
 	  },
@@ -145,9 +152,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	  	let leftDiag = board[0][0] + board[1][1] + board[2][2];
 	  	let rightDiag = board[0][2] + board[1][1] + board[2][0];
 	  	if (leftDiag === 3 || rightDiag === 3) {
-  			return 'Player X wins!'
+  			title.innerHTML = 'Player X wins!';
+  			return;
   		} else if (leftDiag === -3 || rightDiag === -3) {
-  			return 'Player O wins!'
+  			title.innerHTML = 'Player O wins!';
+  			return;
   		}	
   	}
  	}
