@@ -3,9 +3,32 @@ body {
 
 }
 
+#title {
+	font-family: helvetica;
+	font-size: 100px;
+}
+
+#refreshBtn {
+	width: 100px;
+	text-align: center;
+	background: #eee;
+	cursor: pointer;
+	margin: 5px ;
+	padding: 5px;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+
+#refreshBtn:hover {
+	background: #c5c8cc;
+}
+
+#refreshBtn:active {
+	background: white;
+}
+
 #board {
 	margin: auto;
-
 }
 
 .row {
@@ -15,6 +38,7 @@ body {
 }
 
 .square {
+	text-align: center;
 	height: 199px;
 	width: 280;
 	float: left;
@@ -22,5 +46,13 @@ body {
 }
 
 .x {
+	margin-top: 40px;
 	font-size: 100px;
 }
+.o {
+	margin-top: 40px;
+	font-size: 100px;
+}
+
+
+
