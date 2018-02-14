@@ -17,9 +17,13 @@ $('.submitBtn').on('click', () => {
 
 const post = (message) => {
     $.ajax({
-    url: 'http://127.0.0.1:3000/',
-    method: 'POST',
-    'content-type': 'application/json',
+    url: 'http://localhost:3000/',
+    type: 'POST',
+    header: {
+      'content-type': 'application/json'
+    },
+    async: true,
+    crossDomain: true,
     data: message,
     // data: message,
     success: (data) => {
@@ -28,7 +32,6 @@ const post = (message) => {
       data.forEach((subArr) => {
         $('.csvRow').append(subArr + '<br>');
       })
-      console.log(data);
     },
     error: (error) => {
       console.log('error - post did not work', error)

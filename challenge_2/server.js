@@ -5,9 +5,9 @@
 const express = require('express');
 
 const app = express();
-app.use(express.static('./client'));
+app.use(express.static('client'));
 
-app.get('/', express.static('/client')); // not sure what to do with the get?
+// app.get('/', express.static('/client')); // not sure what to do with the get?
 
 app.listen(3000, () => console.log('listening on port 3000'))
 
