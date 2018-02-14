@@ -12,37 +12,48 @@ app.get('/', express.static('/client')); // not sure what to do with the get?
 app.listen(3000, () => console.log('listening on port 3000'))
 
 
-const func = (body, res) => {
+const func = (body) => {
   body = JSON.parse(body);
-  colTitles = '';
-  result = [];
+  let result = [];
 
   const traverseData = (person) => {
     if (result.length === 0) {
       // get each column's title by creating an array of the objects keys
-      colTitles = Object.keys(person);
+      let colTitles = Object.keys(person);
       // remove the children key from the end of the array
       colTitles.pop();
       // add as first subArr to result
       result.push(colTitles);
     }
-    // get person col titles minus the children array
+    // set variable 'attributes' which will hold each person's details in an array
     let attributes = [];
-    for (let i = 0; i < colTitles.length; i++) {
-        attributes.push(person[colTitles[i]]);
+    // loop through the array of column titles - found at position 0 of results array
+    for (let i = 0; i < result[0].length; i++) {
+      // push each attribute into the attributes array
+      attributes.push(person[result[0][i]]);
     }
+    // once all attributes have been added, push the attributes array into result
     result.push(attributes);
+    // then check if the person has children
     if (person.children.length > 0) {
+      //loop through children array and call the traverseData function on each child/person
       for (let j = 0; j < person.children.length; j++) {
         traverseData(person.children[j]);
       }
     }
-  } 
+  }
+  // invoke the inner recursive function aka traversData
   traverseData(body);
   return result;
 }
 
-// const csvFormatter
+const csvFormatter = (array) => {
+  let newArr = [];
+  for (var i = 0; i < array.length; i++) {
+    newArr.push(array[i].join(','));
+  }
+  return newArr.join('\n');
+}
 
 const postHandler = (req, res) => {
   console.log('req received');
@@ -52,8 +63,9 @@ const postHandler = (req, res) => {
   }).on('end', () => {
     body = Buffer.concat(body).toString();
     // res.send(JSON.parse(body));
-    body = func(body, res);
-    res.send(body);
+    body = func(body);
+    csvFile = csvFormatter(body);
+    res.send(csvFile);
   })
 
 }
