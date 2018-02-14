@@ -7,18 +7,31 @@
 
 $('.submitBtn').on('click', () => {
   let message = $('.inputField').val();
-  $.ajax({
+  if (message.length > 0) {
+    if(message.slice(-1) === ';') {
+      message = message.slice(0, -1);
+    }
+    post(message);
+  }
+});
+
+const post = (message) => {
+    $.ajax({
     url: 'http://127.0.0.1:3000/',
     method: 'POST',
     'content-type': 'application/json',
     data: message,
     // data: message,
     success: (data) => {
-      console.log('successfully sent', message);
+      $('.inputField').fadeToggle();
+      $('.formBox').prepend('<div class="csvData"><p class="csvRow"></p></div>')
+      data.forEach((subArr) => {
+        $('.csvRow').append(subArr + '<br>');
+      })
+      console.log(data);
     },
     error: (error) => {
       console.log('error - post did not work', error)
     }
   })
-  console.log($('.inputField').val());
-});
+}

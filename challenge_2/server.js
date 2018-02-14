@@ -52,7 +52,7 @@ const csvFormatter = (array) => {
   for (var i = 0; i < array.length; i++) {
     newArr.push(array[i].join(','));
   }
-  return newArr.join('\n');
+  return newArr;
 }
 
 const postHandler = (req, res) => {
@@ -62,12 +62,10 @@ const postHandler = (req, res) => {
     body.push(chunk)
   }).on('end', () => {
     body = Buffer.concat(body).toString();
-    // res.send(JSON.parse(body));
     body = func(body);
     csvFile = csvFormatter(body);
     res.send(csvFile);
   })
-
 }
 
 app.post('/', postHandler);
