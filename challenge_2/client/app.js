@@ -6,16 +6,19 @@
 //submit button on click will submit a post request using ajax
 
 $('.submitBtn').on('click', () => {
+  let message = $('.inputField').val();
   $.ajax({
-    'url': '/',
-    'method': 'POST',
+    url: 'http://127.0.0.1:3000/',
+    method: 'POST',
     'content-type': 'application/json',
-    'data':,
+    data: message,
+    // data: message,
     success: (data) => {
-      console.log('successfully sent', data);
+      console.log('successfully sent', message);
     },
     error: (error) => {
-      console.log('this shit didn\'t work!!', error)
+      console.log('error - post did not work', error)
     }
   })
+  console.log($('.inputField').val());
 });
