@@ -5,12 +5,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <meta charset="utf-8">
     <style type="text/css">
+      body {
+        background: #eee;
+      }
       .title {
         font-family: courier;
+        text-align: center;
+        color: #93a2ba;
+      }
+
+      .formBox {
+        display: block;
+        text-align: center;
+      }
+      .csvData {
+        width: 100px;
+        
+      }
+      .csvRow {
+        text-align: left;
+        color: black;
       }
 
       .inputField {
-        width: 590px;
+        /*margin: 0 auto;*/
+        min-width: 500px;
         height: 165px;
       }
 
@@ -46,8 +65,9 @@
       <form>
         <textarea class="inputField"></textarea>
       </form>
+      <div class="submitBtn">submit</div>
     </div>
-    <div class="submitBtn">submit</div>
+    
   </body>
   <script src="server.js"></script>
   <script src="app.js"></script>

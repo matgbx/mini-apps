@@ -27,7 +27,7 @@ const post = (message) => {
     data: message,
     // data: message,
     success: (data) => {
-      $('.inputField').fadeToggle();
+      $('.inputField').val('');
       $('.formBox').prepend('<div class="csvData"><p class="csvRow"></p></div>')
       data.forEach((subArr) => {
         $('.csvRow').append(subArr + '<br>');
