@@ -1,5 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,12 +13,15 @@ class App extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this);
     this.alternateTurn = this.alternateTurn.bind(this);
+    this.sendPost = this.sendPost.bind(this);
   }
   componentDidMount() {
     this.render();
   }
   handleClick(e) {
-    if (e.target.className === 'white') {
+    let indexRef = e.target.className.slice(-2);
+    let classes =  e.target.className.slice(0, -3);
+    if ( classes === 'white open') {
       if (this.state.player1Turn) {  
         e.target.className = this.state.color;
         this.alternateTurn('blue');
@@ -26,6 +30,7 @@ class App extends React.Component {
         this.alternateTurn('red');
       }
     }
+    this.sendPost(JSON.stringify('WRECKED'))
   }
 
   alternateTurn(col) {
@@ -34,9 +39,26 @@ class App extends React.Component {
       color: col
     })
   }
-  sendPost() {
-    
+
+  sendPost(message) {
+    $.ajax({
+      url: 'http://localhost:3000/',
+      type: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      async: true,
+      crossDomain: true,
+      data: message,
+      success: (data) => {
+        console.log('post was sent correctly')
+      },
+      error: (error) => {
+        console.log('error - post did not work', error)
+      }
+    })
   }
+
   render() {
     let numRows = [...Array(this.state.height).keys()];
     let rowCounter = 0;
@@ -49,6 +71,7 @@ class App extends React.Component {
             return  <Row handleClick={this.handleClick}
                           width={this.state.width}
                           className={'row ' + (rowCounter-1)}
+                          rowNum={rowCounter-1}
                     />
 
           })
@@ -69,13 +92,17 @@ class App extends React.Component {
 const Row = (props) => {
   let width = [...Array(props.width).keys()];
   let colCounter = 0
+  let classes = 'white ';
+  if (props.rowNum === 5) {
+    classes = 'white open ';
+  }
   return(
     <div className={props.className}>
       {
         width.map( num => {
           colCounter++;
           return <Cell handleClick={props.handleClick}
-                        className={'white ' + (colCounter-1)}
+                        className={classes + (props.rowNum) + '' + (colCounter-1)}
                   />
         })
       }
