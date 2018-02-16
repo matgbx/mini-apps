@@ -1,8 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
 
+
 const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
+
 
 var config = {
   entry: APP_DIR + '/index.jsx',
@@ -18,7 +20,7 @@ var config = {
       {
         test: /\.jsx?/,
         include: APP_DIR,
-        excludes: './node_modules'
+        exclude: __dirname + '/node_modules/',
         loader: 'babel-loader'
       },
     ],
