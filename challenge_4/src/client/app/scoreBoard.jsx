@@ -10,6 +10,7 @@ class ScoreBoard extends React.Component {
       roundScores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       frames: this.props.frames,
       lastFrame: 0
+
     }
   }
   componentDidMount() {
@@ -21,7 +22,7 @@ class ScoreBoard extends React.Component {
     })
   }
 
-  setBoard() {
+  setFrameScores() {
     let count = this.props.bowlCount;
     let score = this.props.bowlScore;
     let frame = this.props.currFrame;
@@ -37,10 +38,27 @@ class ScoreBoard extends React.Component {
     }
   }
 
+  // strikesAndSpares() {
+  //   let frames = this.state.bowlsPerRd
+  //   for (var i = 0; i < frames.length) {
+  //     let bowl1 = frames[i][0];
+  //     let bowl2 = frames[i][1];
+  //     //check for strike
+  //     if (bowl1 + bowl2 === 10 && bowl1 !== 0 && bowl2 !== 0) {
+  //       // collect next two bowls and add to value
+
+  //       //then check for spare
+  //     } else if (bowl1 + bowl2 === 10) {
+  //       // collect next bowl and add to value
+  //     } else {
+  //       this.state.roundScores[i] === bowl1 + bowl2;
+  //     }
+  //   }
+    
+  // }
+
   render() {
-    this.setBoard();
-    console.log(this.props.strike);
-    console.log(this.props.spare);
+    this.setFrameScores();
     return (
       <div className="scoreBoard">
       {
@@ -48,11 +66,13 @@ class ScoreBoard extends React.Component {
           let frame = this.state.bowlsPerRd[num-1];
           if (frame.length > 0) {
             if (this.props.strike){
+              console.log('strike? SB: ', this.props.strike)
               return <ScoreBox bowl1={'X'} bowl2={''}/>  
             } else if (this.props.spare) {
+              console.log('spare? SB: ', this.props.spare)
               return <ScoreBox bowl1={frame[0]} bowl2={'/'}/>  
             } else {
-              return <ScoreBox bowl1={frame[0]} bowl2={frame[1]}/>
+              return <ScoreBox bowl1={frame[0]} bowl2={frame[1] || ''}/>
             }
           }
             

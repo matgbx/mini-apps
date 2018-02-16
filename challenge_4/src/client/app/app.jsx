@@ -30,9 +30,10 @@ class App extends React.Component {
         bowlScore: curr,
         strike: true,
         spare: false,
-        bowlCount: this.state.bowlCount+1
+        bowlCount: this.state.bowlCount+2,
+        currFrame: this.state.currFrame+1
       }, () => {this.setFrameAndStrike();})
-    } else if (curr > 10 && diff === 0) {
+    } else if (curr + last === 10) {
       console.log('SPARE ', curr);
       this.setState({
         bowlScore: curr,
@@ -57,8 +58,7 @@ class App extends React.Component {
         spare: false
       })
     }
-    if (this.state.bowlCount % 2 === 1) {
-      this.setState({
+    if (this.state.bowlCount % 2 === 1) {this.setState({
         currFrame: this.state.currFrame+1,
       }, () => {console.log('currFrame App: ',this.state.currFrame)})
     } else {

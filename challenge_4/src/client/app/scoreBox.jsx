@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ScoreBox = (props) => {
+  console.log('scoreBox spare: ',props.bowl2);
   return (
     <div className="scoreBox">
       <div className="bowl2">{props.bowl2}</div>
@@ -9,6 +10,5 @@ const ScoreBox = (props) => {
     </div>
   )
 }
-
 
 export default ScoreBox;
